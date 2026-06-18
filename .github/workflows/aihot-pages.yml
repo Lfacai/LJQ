@@ -24,6 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -36,7 +40,7 @@ jobs:
         run: touch Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily/.nojekyll
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily
 
