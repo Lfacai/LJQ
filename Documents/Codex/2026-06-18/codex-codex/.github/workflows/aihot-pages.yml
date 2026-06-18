@@ -1,0 +1,52 @@
+name: Deploy AI HOT Daily Site
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "20 23 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate site snapshot
+        run: node work/aihot-daily/generate.mjs
+
+      - name: Add nojekyll
+        run: touch outputs/aihot-daily/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: outputs/aihot-daily
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
