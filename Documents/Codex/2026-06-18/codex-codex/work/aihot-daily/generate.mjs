@@ -56,8 +56,8 @@ function buildHtml(data, css, js) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="AI HOT 今日精选，按类别浏览最近 24 小时的精选日报。" />
-    <title>AI HOT 今日精选</title>
+    <meta name="description" content="24 小时 AI 资讯精选，从新模型、新产品到行业动态，帮你快速抓住 AI 领域正在发生的重要变化。" />
+    <title>AI HOT 24 小时 AI 资讯精选</title>
     <style>
 ${css}
     </style>
@@ -69,8 +69,8 @@ ${css}
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">AI HOT · 每日 07:20 自动刷新</p>
-          <h1>今日精选，按类别快速看完</h1>
-          <p class="lede">把最近 24 小时内的精选 AI 日报收拢到一页，按模型、产品、行业、论文和技巧分类浏览。</p>
+          <h1>24 小时 AI 资讯精选</h1>
+          <p class="lede">从新模型、新产品到行业动态，帮你快速抓住 AI 领域正在发生的重要变化。</p>
           <div class="hero-meta">
             <div class="metric">
               <span class="metric-label">本次收录</span>

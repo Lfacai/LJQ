@@ -98,7 +98,8 @@ h1 {
   font-size: clamp(2.4rem, 4.8vw, 4.8rem);
   line-height: 0.98;
   letter-spacing: -0.06em;
-  max-width: 11ch;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .lede {
@@ -446,6 +447,7 @@ h1 {
   }
 
   h1 {
-    max-width: 9ch;
+    font-size: clamp(1.9rem, 7vw, 3rem);
+    white-space: nowrap;
   }
 }

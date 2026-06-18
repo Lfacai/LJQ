@@ -1,9 +1,9 @@
 {
   "source": "https://aihot.virxact.com",
-  "generatedAt": "2026-06-18T06:54:33.581Z",
-  "windowStart": "2026-06-17T06:54:33.428Z",
+  "generatedAt": "2026-06-18T08:10:46.319Z",
+  "windowStart": "2026-06-17T08:10:46.155Z",
   "windowHours": 24,
-  "total": 29,
+  "total": 30,
   "groups": [
     {
       "key": "ai-models",
@@ -39,8 +39,20 @@
     {
       "key": "ai-products",
       "label": "产品发布",
-      "count": 16,
+      "count": 17,
       "items": [
+        {
+          "id": "cmqj7f40n00tmslmhcbr93w6l",
+          "title": "免费开源乔木画布：AI生图+抠图，一键部署Vercel",
+          "title_en": "免费开源乔木画布，一键部署Vercel为网站，简化版 PS。 支持Seedream生图、GPT-image-2，图片模版存储分享。 支持一键抠图、2w图标和常见Emoji，甚至都能画PRD了。 …",
+          "url": "https://x.com/vista8/status/2067513484364140994",
+          "source": "X：Vista (@vista8)",
+          "publishedAt": "2026-06-18T07:43:21.000Z",
+          "summary": "乔木画布推出免费开源在线图像编辑器，可一键部署Vercel为网站，功能类似简化版PS。支持Seedream和GPT-image-2生图、图片模板存储分享、一键抠图、2万图标和常见Emoji，甚至能绘制PRD。随时创建3：4/16：9/21：9等不同尺寸画布。原计划高级功能收费，庆祝端午节现全免费开源。在线体验：https：//ps.qiaomu.ai/，GitHub见评论区。",
+          "category": "ai-products",
+          "score": 79,
+          "selected": true
+        },
         {
           "id": "cmqj36zhf06vksl5w4wx2c0eo",
           "title": "MOSS-TTS-Local-Transformer-v1.5 在 SGLang-Omni 上：原生流式 48 kHz 语音服务",
@@ -390,6 +402,18 @@
     }
   ],
   "items": [
+    {
+      "id": "cmqj7f40n00tmslmhcbr93w6l",
+      "title": "免费开源乔木画布：AI生图+抠图，一键部署Vercel",
+      "title_en": "免费开源乔木画布，一键部署Vercel为网站，简化版 PS。 支持Seedream生图、GPT-image-2，图片模版存储分享。 支持一键抠图、2w图标和常见Emoji，甚至都能画PRD了。 …",
+      "url": "https://x.com/vista8/status/2067513484364140994",
+      "source": "X：Vista (@vista8)",
+      "publishedAt": "2026-06-18T07:43:21.000Z",
+      "summary": "乔木画布推出免费开源在线图像编辑器，可一键部署Vercel为网站，功能类似简化版PS。支持Seedream和GPT-image-2生图、图片模板存储分享、一键抠图、2万图标和常见Emoji，甚至能绘制PRD。随时创建3：4/16：9/21：9等不同尺寸画布。原计划高级功能收费，庆祝端午节现全免费开源。在线体验：https：//ps.qiaomu.ai/，GitHub见评论区。",
+      "category": "ai-products",
+      "score": 79,
+      "selected": true
+    },
     {
       "id": "cmqj36zhf06vksl5w4wx2c0eo",
       "title": "MOSS-TTS-Local-Transformer-v1.5 在 SGLang-Omni 上：原生流式 48 kHz 语音服务",
