@@ -92,6 +92,16 @@ ${css}
           </div>
         </div>
         <aside class="hero-panel">
+          <a
+            class="manual-update"
+            href="https://github.com/Lfacai/LJQ/actions/workflows/aihot-pages.yml"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span class="manual-update-kicker">备用入口</span>
+            <strong>手动更新</strong>
+            <span class="manual-update-note">打开 GitHub Actions 手动运行页面，必要时可立即补跑一次更新。</span>
+          </a>
           <label class="search" for="search">
             <span>搜索标题 / 来源 / 摘要</span>
             <input id="search" type="search" placeholder="试试输入 OpenAI、模型、论文..." />
