@@ -1,7 +1,9 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 import path from "node:path";
 
-const ROOT = path.resolve("C:/Users/MT11M/Documents/Codex/2026-06-18/codex-codex");
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(SCRIPT_DIR, "..", "..");
 const OUTPUT_DIR = path.join(ROOT, "outputs", "aihot-daily");
 
 const UA =

@@ -30,15 +30,15 @@ jobs:
           node-version: "20"
 
       - name: Generate site snapshot
-        run: node work/aihot-daily/generate.mjs
+        run: node Documents/Codex/2026-06-18/codex-codex/work/aihot-daily/generate.mjs
 
       - name: Add nojekyll
-        run: touch outputs/aihot-daily/.nojekyll
+        run: touch Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: outputs/aihot-daily
+          path: Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily
 
   deploy:
     needs: build
