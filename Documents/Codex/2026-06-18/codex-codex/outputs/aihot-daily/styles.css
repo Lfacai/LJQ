@@ -111,7 +111,7 @@ h1 {
 
 .hero-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 24px;
 }
@@ -133,6 +133,32 @@ h1 {
 .metric strong {
   font-size: 1.08rem;
   font-weight: 700;
+}
+
+.metric small {
+  display: block;
+  margin-top: 6px;
+  color: var(--soft);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.metric.status-ok {
+  border-color: rgba(124, 232, 199, 0.24);
+  background: linear-gradient(180deg, rgba(124, 232, 199, 0.11), rgba(255, 255, 255, 0.03));
+}
+
+.metric.status-ok strong {
+  color: var(--accent);
+}
+
+.metric.status-warn {
+  border-color: rgba(244, 168, 109, 0.25);
+  background: linear-gradient(180deg, rgba(244, 168, 109, 0.1), rgba(255, 255, 255, 0.03));
+}
+
+.metric.status-warn strong {
+  color: #ffd1a8;
 }
 
 .hero-panel {

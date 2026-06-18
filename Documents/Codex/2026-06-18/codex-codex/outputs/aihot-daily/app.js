@@ -17,6 +17,8 @@ const state = {
 const els = {
   count: document.getElementById("metric-count"),
   updated: document.getElementById("metric-updated"),
+  syncStatus: document.getElementById("sync-status"),
+  syncDetails: document.getElementById("sync-details"),
   search: document.getElementById("search"),
   rail: document.getElementById("rail"),
   sections: document.getElementById("sections"),
@@ -39,6 +41,13 @@ const dateFormatter = new Intl.DateTimeFormat("zh-CN", {
   weekday: "short",
 });
 
+const dayKeyFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Shanghai",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
 function formatTime(value) {
   if (!value) return "刚刚";
   return timeFormatter.format(new Date(value));
@@ -46,6 +55,14 @@ function formatTime(value) {
 
 function formatDate(value) {
   return value ? dateFormatter.format(new Date(value)) : "今日";
+}
+
+function dateKey(value) {
+  return value ? dayKeyFormatter.format(new Date(value)) : "";
+}
+
+function nextRunLabel() {
+  return "每日 07:20（北京时间）";
 }
 
 function normalizeCategory(category) {
@@ -156,6 +173,13 @@ function render() {
   const total = state.data.items.length;
   els.count.textContent = `${total} 条`;
   els.updated.textContent = formatTime(state.data.generatedAt);
+  const isFreshToday = dateKey(state.data.generatedAt) === dateKey(new Date());
+  els.syncStatus.textContent = isFreshToday ? "今日已刷新" : "等待刷新";
+  els.syncDetails.textContent = isFreshToday
+    ? `已按 ${nextRunLabel()} 成功生成`
+    : `上次生成时间：${formatTime(state.data.generatedAt)}`;
+  els.syncStatus.parentElement.classList.toggle("status-ok", isFreshToday);
+  els.syncStatus.parentElement.classList.toggle("status-warn", !isFreshToday);
   renderPills(buildGroups(state.data.items));
   renderRail(buildGroups(state.data.items));
   renderSections(groups);

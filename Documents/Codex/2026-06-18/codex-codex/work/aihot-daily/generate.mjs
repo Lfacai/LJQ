@@ -81,6 +81,11 @@ ${css}
               <strong id="metric-updated">-</strong>
             </div>
             <div class="metric">
+              <span class="metric-label">自动更新状态</span>
+              <strong id="sync-status">-</strong>
+              <small id="sync-details">-</small>
+            </div>
+            <div class="metric">
               <span class="metric-label">时间窗口</span>
               <strong>最近 24 小时</strong>
             </div>
