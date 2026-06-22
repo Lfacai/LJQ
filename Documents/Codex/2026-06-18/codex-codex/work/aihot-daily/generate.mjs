@@ -1,6 +1,9 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { readdir, unlink } from "node:fs/promises";
+
+
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, "..", "..");
@@ -16,6 +19,35 @@ const CATEGORY_LABELS = {
   paper: "论文研究",
   tip: "技巧观点",
 };
+
+async function cleanOldFiles() {
+  const files = await readdir(OUTPUT_DIR);
+
+  const jsonFiles = files.filter(f => /^\d{4}-\d{2}-\d{2}\.json$/.test(f));
+
+  const cutoffDate = new Date();
+  cutoffDate.setDate(cutoffDate.getDate() - 30);
+
+  for (const file of jsonFiles) {
+    const dateStr = file.replace(".json", "");
+    const fileDate = new Date(dateStr);
+
+    if (fileDate < cutoffDate) {
+      await unlink(path.join(OUTPUT_DIR, file));
+      console.log("Deleted old file:", file);
+    }
+  }
+}
+
+function getDateStr(d = new Date()) {
+  return d.toISOString().split("T")[0];
+}
+
+function getDateNDaysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return getDateStr(d);
+}
 
 function normalizeItem(item) {
   return {
@@ -159,9 +191,16 @@ async function main() {
   const css = await readFile(path.join(OUTPUT_DIR, "styles.css"), "utf8");
   const js = await readFile(path.join(OUTPUT_DIR, "app.js"), "utf8");
 
-  await writeFile(path.join(OUTPUT_DIR, "data.json"), JSON.stringify(data, null, 2), "utf8");
+  const today = getDateStr();
+
+  const dailyFile = path.join(OUTPUT_DIR, `${today}.json`);
+
+  await writeFile(dailyFile, JSON.stringify(data, null, 2), "utf8");
+
+  // 保留最新页面
   await writeFile(path.join(OUTPUT_DIR, "index.html"), buildHtml(data, css, js), "utf8");
   console.log(`Wrote ${items.length} items to ${path.join(OUTPUT_DIR, "data.json")}`);
 }
 
 await main();
+await cleanOldFiles();
