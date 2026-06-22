@@ -48,6 +48,30 @@ const dayKeyFormatter = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 });
 
+function getDate() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("date");
+}
+
+async function loadData() {
+  const date = getDate();
+
+  let url;
+
+  if (date) {
+    url = `./${date}.json`;
+  } else {
+    url = "./data.json"; // fallback 最新
+  }
+
+  const res = await fetch(url);
+  const data = await res.json();
+
+  render(data); // 你原来的渲染函数
+}
+
+loadData();
+
 function formatTime(value) {
   if (!value) return "刚刚";
   return timeFormatter.format(new Date(value));
