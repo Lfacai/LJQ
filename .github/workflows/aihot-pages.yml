@@ -20,6 +20,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,12 +34,58 @@ jobs:
         with:
           node-version: "20"
 
+      # =========================
+      # 1. 生成数据 & 页面
+      # =========================
       - name: Generate site snapshot
         run: node Documents/Codex/2026-06-18/codex-codex/work/aihot-daily/generate.mjs
 
+      # =========================
+      # 2. 生成 .nojekyll
+      # =========================
       - name: Add nojekyll
-        run: touch Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily/.nojekyll
+        run: |
+          touch Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily/.nojekyll
 
+      # =========================
+      # 3. 清理 30 天前历史 JSON（核心新增）
+      # =========================
+      - name: Cleanup 30 days old snapshots
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          const dir = 'Documents/Codex/2026-06-18/codex-codex/outputs/aihot-daily';
+
+          if (!fs.existsSync(dir)) {
+            console.log('output dir not found');
+            process.exit(0);
+          }
+
+          const files = fs.readdirSync(dir);
+          const now = new Date();
+
+          for (const file of files) {
+            if (!/^\d{4}-\d{2}-\d{2}\.json$/.test(file)) continue;
+
+            const dateStr = file.replace('.json','');
+            const date = new Date(dateStr);
+
+            if (isNaN(date.getTime())) continue;
+
+            const diffDays = (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
+
+            if (diffDays > 30) {
+              fs.unlinkSync(path.join(dir, file));
+              console.log('🧹 deleted:', file);
+            }
+          }
+          "
+
+      # =========================
+      # 4. Upload Pages artifact
+      # =========================
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -47,9 +94,11 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
