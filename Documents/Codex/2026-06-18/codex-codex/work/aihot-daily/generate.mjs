@@ -1,13 +1,11 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { readdir, unlink } from "node:fs/promises";
-
-
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, "..", "..");
 const OUTPUT_DIR = path.join(ROOT, "outputs", "aihot-daily");
+const DATA_DIR = path.join(OUTPUT_DIR, "data");
 
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
@@ -19,35 +17,6 @@ const CATEGORY_LABELS = {
   paper: "论文研究",
   tip: "技巧观点",
 };
-
-async function cleanOldFiles() {
-  const files = await readdir(OUTPUT_DIR);
-
-  const jsonFiles = files.filter(f => /^\d{4}-\d{2}-\d{2}\.json$/.test(f));
-
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - 30);
-
-  for (const file of jsonFiles) {
-    const dateStr = file.replace(".json", "");
-    const fileDate = new Date(dateStr);
-
-    if (fileDate < cutoffDate) {
-      await unlink(path.join(OUTPUT_DIR, file));
-      console.log("Deleted old file:", file);
-    }
-  }
-}
-
-function getDateStr(d = new Date()) {
-  return d.toISOString().split("T")[0];
-}
-
-function getDateNDaysAgo(n) {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return getDateStr(d);
-}
 
 function normalizeItem(item) {
   return {
@@ -62,6 +31,41 @@ function normalizeItem(item) {
     score: item.score ?? null,
     selected: Boolean(item.selected),
   };
+}
+
+function formatDateKey(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const lookup = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${lookup.year}-${lookup.month}-${lookup.day}`;
+}
+
+function dateKeyToDayNumber(dateKey) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+  return Math.floor(Date.UTC(year, month - 1, day) / 86400000);
+}
+
+async function pruneOldSnapshots(retainDays = 30) {
+  const entries = await readdir(DATA_DIR, { withFileTypes: true }).catch(() => []);
+  const todayKey = formatDateKey();
+  const todayDay = dateKeyToDayNumber(todayKey);
+  const dateFilePattern = /^\d{4}-\d{2}-\d{2}\.json$/;
+
+  await Promise.all(
+    entries
+      .filter((entry) => entry.isFile() && dateFilePattern.test(entry.name))
+      .map(async (entry) => {
+        const fileDateKey = entry.name.replace(/\.json$/, "");
+        const ageDays = todayDay - dateKeyToDayNumber(fileDateKey);
+        if (ageDays > retainDays) {
+          await rm(path.join(DATA_DIR, entry.name), { force: true });
+        }
+      }),
+  );
 }
 
 function groupItems(items) {
@@ -160,6 +164,7 @@ ${js}
 
 async function main() {
   await mkdir(OUTPUT_DIR, { recursive: true });
+  await mkdir(DATA_DIR, { recursive: true });
 
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const url = new URL("https://aihot.virxact.com/api/public/items");
@@ -178,8 +183,10 @@ async function main() {
     .sort((a, b) => new Date(b.publishedAt ?? 0).getTime() - new Date(a.publishedAt ?? 0).getTime());
 
   const generatedAt = new Date().toISOString();
+  const snapshotDate = formatDateKey();
   const data = {
     source: "https://aihot.virxact.com",
+    date: snapshotDate,
     generatedAt,
     windowStart: since,
     windowHours: 24,
@@ -191,16 +198,16 @@ async function main() {
   const css = await readFile(path.join(OUTPUT_DIR, "styles.css"), "utf8");
   const js = await readFile(path.join(OUTPUT_DIR, "app.js"), "utf8");
 
-  const today = getDateStr();
+  const datedPath = path.join(DATA_DIR, `${snapshotDate}.json`);
+  const latestPath = path.join(DATA_DIR, "latest.json");
+  const aliasPath = path.join(OUTPUT_DIR, "data.json");
 
-  const dailyFile = path.join(OUTPUT_DIR, `${today}.json`);
-
-  await writeFile(dailyFile, JSON.stringify(data, null, 2), "utf8");
-
-  // 保留最新页面
+  await writeFile(datedPath, JSON.stringify(data, null, 2), "utf8");
+  await writeFile(latestPath, JSON.stringify(data, null, 2), "utf8");
+  await writeFile(aliasPath, JSON.stringify(data, null, 2), "utf8");
   await writeFile(path.join(OUTPUT_DIR, "index.html"), buildHtml(data, css, js), "utf8");
+  await pruneOldSnapshots(30);
   console.log(`Wrote ${items.length} items to ${path.join(OUTPUT_DIR, "data.json")}`);
 }
 
 await main();
-await cleanOldFiles();

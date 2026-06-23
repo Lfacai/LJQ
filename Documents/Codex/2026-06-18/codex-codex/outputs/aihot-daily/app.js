@@ -89,6 +89,14 @@ function nextRunLabel() {
   return "每日 07:20（北京时间）";
 }
 
+function isDateKey(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function snapshotUrl(dateKey) {
+  return dateKey ? `./data/${dateKey}.json` : "./data/latest.json";
+}
+
 function normalizeCategory(category) {
   return CATEGORY_META[category] ? category : "unknown";
 }
@@ -193,6 +201,7 @@ function renderSections(groups) {
 }
 
 function render() {
+  if (!state.data) return;
   const groups = buildGroups(filteredItems(state.data.items));
   const total = state.data.items.length;
   els.count.textContent = `${total} 条`;
@@ -211,15 +220,20 @@ function render() {
 
 async function loadData() {
   const inline = document.getElementById("aihot-data")?.textContent?.trim();
-  if (inline && inline !== "__AIHOT_INLINE_DATA__") {
+  const dateParam = new URLSearchParams(window.location.search).get("date");
+  const dateKey = dateParam && isDateKey(dateParam) ? dateParam : "";
+  const dataUrl = snapshotUrl(dateKey);
+
+  if (inline && inline !== "__AIHOT_INLINE_DATA__" && !dateKey) {
     state.data = JSON.parse(inline);
     render();
     return;
   }
 
-  const response = await fetch("./data.json", { cache: "no-store" });
+  const response = await fetch(dataUrl, { cache: "no-store" });
   if (!response.ok) {
-    throw new Error(`Failed to load data.json: ${response.status}`);
+    const extra = dateKey ? `；该日期已超过 30 天保留期，可能已被清理` : "";
+    throw new Error(`Failed to load ${dataUrl}: ${response.status}${extra}`);
   }
   state.data = await response.json();
   render();
