@@ -10,6 +10,7 @@ const CATEGORY_META = {
 
 const state = {
   data: null,
+  manifest: null,
   category: "all",
   query: "",
 };
@@ -19,9 +20,8 @@ const els = {
   updated: document.getElementById("metric-updated"),
   syncStatus: document.getElementById("sync-status"),
   syncDetails: document.getElementById("sync-details"),
-  datePicker: document.getElementById("date-picker"),
-  dateGo: document.getElementById("date-go"),
-  dateLatest: document.getElementById("date-latest"),
+  historyDates: document.getElementById("history-dates"),
+  historyCount: document.getElementById("history-count"),
   search: document.getElementById("search"),
   rail: document.getElementById("rail"),
   sections: document.getElementById("sections"),
@@ -64,6 +64,18 @@ function dateKey(value) {
   return value ? dayKeyFormatter.format(new Date(value)) : "";
 }
 
+function parseDateKey(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00+08:00`);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+const historyFormatter = new Intl.DateTimeFormat("zh-CN", {
+  timeZone: "Asia/Shanghai",
+  month: "2-digit",
+  day: "2-digit",
+  weekday: "short",
+});
+
 function nextRunLabel() {
   return "每日 07:20（北京时间）";
 }
@@ -92,11 +104,43 @@ function navigateToDate(dateKey) {
   window.location.href = url.toString();
 }
 
-function syncDatePicker(dateKey) {
-  if (!els.datePicker) return;
-  els.datePicker.max = dateKeyFromDate(new Date());
-  els.datePicker.min = dateKeyFromDate(new Date(Date.now() - 29 * 24 * 60 * 60 * 1000));
-  els.datePicker.value = dateKey || dateKeyFromDate(new Date());
+function selectedDateKey() {
+  return getDateParam() || state.data?.date || "";
+}
+
+function formatHistoryDate(dateKey) {
+  const parsed = parseDateKey(dateKey);
+  if (!parsed) return dateKey;
+  return historyFormatter.format(parsed);
+}
+
+function renderHistory() {
+  if (!els.historyDates) return;
+
+  const dates = state.manifest?.availableDates ?? [];
+  const activeDate = selectedDateKey();
+
+  if (els.historyCount) {
+    els.historyCount.textContent = dates.length ? `${dates.length} 天存档` : "暂无存档";
+  }
+
+  if (!dates.length) {
+    els.historyDates.innerHTML = '<span class="history-empty">暂无可用历史日期</span>';
+    return;
+  }
+
+  els.historyDates.innerHTML = dates
+    .map((dateKey) => {
+      const active = dateKey === activeDate;
+      const label = formatHistoryDate(dateKey);
+      return `
+        <a class="history-chip ${active ? "active" : ""}" href="?date=${dateKey}">
+          <span>${label}</span>
+          <small>${dateKey}</small>
+        </a>
+      `;
+    })
+    .join("");
 }
 
 function normalizeCategory(category) {
@@ -218,6 +262,29 @@ function render() {
   renderPills(buildGroups(state.data.items));
   renderRail(buildGroups(state.data.items));
   renderSections(groups);
+  renderHistory();
+}
+
+async function loadManifest() {
+  try {
+    const response = await fetch("./data/index.json", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`Failed to load ./data/index.json: ${response.status}`);
+    }
+    state.manifest = await response.json();
+  } catch (error) {
+    const fallbackDate = state.data?.date || dateKey(new Date());
+    state.manifest = fallbackDate
+      ? {
+          generatedAt: state.data?.generatedAt ?? null,
+          latestDate: fallbackDate,
+          retentionDays: 30,
+          availableDates: [fallbackDate],
+        }
+      : { availableDates: [] };
+    console.warn(error);
+  }
+  renderHistory();
 }
 
 async function loadData() {
@@ -228,7 +295,6 @@ async function loadData() {
   if (inline && inline !== "__AIHOT_INLINE_DATA__" && !dateKey) {
     state.data = JSON.parse(inline);
     render();
-    syncDatePicker("");
     return;
   }
 
@@ -239,16 +305,6 @@ async function loadData() {
   }
   state.data = await response.json();
   render();
-  syncDatePicker(dateKey);
-}
-
-function dateKeyFromDate(input) {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Shanghai",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(input));
 }
 
 document.addEventListener("click", (event) => {
@@ -263,22 +319,7 @@ els.search.addEventListener("input", (event) => {
   render();
 });
 
-els.dateGo?.addEventListener("click", () => {
-  const value = els.datePicker?.value || "";
-  navigateToDate(value);
-});
-
-els.dateLatest?.addEventListener("click", () => {
-  navigateToDate("");
-});
-
-els.datePicker?.addEventListener("change", () => {
-  if (els.datePicker.value) {
-    navigateToDate(els.datePicker.value);
-  }
-});
-
-loadData().catch((error) => {
+Promise.all([loadManifest(), loadData()]).catch((error) => {
   els.sections.innerHTML = `<section class="section"><div class="empty-state">加载失败：${error.message}</div></section>`;
   els.empty.classList.add("hidden");
   console.error(error);

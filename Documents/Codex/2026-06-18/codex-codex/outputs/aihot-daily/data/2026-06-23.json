@@ -1,10 +1,10 @@
 {
   "source": "https://aihot.virxact.com",
   "date": "2026-06-23",
-  "generatedAt": "2026-06-23T00:13:15.529Z",
-  "windowStart": "2026-06-22T00:13:15.215Z",
+  "generatedAt": "2026-06-23T00:21:39.836Z",
+  "windowStart": "2026-06-22T00:21:39.641Z",
   "windowHours": 24,
-  "total": 14,
+  "total": 15,
   "groups": [
     {
       "key": "ai-models",
@@ -169,8 +169,20 @@
     {
       "key": "tip",
       "label": "技巧观点",
-      "count": 3,
+      "count": 4,
       "items": [
+        {
+          "id": "cmqpw6se704e7slp5z6jfjtpe",
+          "title": "GLM-5.2 开源模型发布：744B 参数，1M 上下文，可本地运行",
+          "title_en": "Unsloth GLM-5.2 - 如何在本地运行",
+          "url": "https://unsloth.ai/docs/models/glm-5.2",
+          "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+          "publishedAt": "2026-06-22T23:56:29.361Z",
+          "summary": "Z.ai 发布 GLM-5.2，开源 744B 参数（40B 活跃），1M 上下文窗口，性能与 Claude 4.8 Opus、GPT-5.5、Gemini 3.1 Pro 持平。通过 Unsloth 动态量化，2-bit GGUF 版本内存需求降至 239GB（-84%），1-bit 版降至 217GB（-86%），可运行于 256GB 统一内存 Mac 或 1×24GB GPU+256GB RAM。提供非思考、高、最大三种思考模式。评测显示动态 1-bit 准确率约 76.2%，2-bit 约 82%。",
+          "category": "tip",
+          "score": 84,
+          "selected": true
+        },
         {
           "id": "cmqpgzgfq00hislp5hwlbgz0h",
           "title": "Google ADK 与 A2A 协议：跨语言多智能体团队构建实战",
@@ -211,6 +223,18 @@
     }
   ],
   "items": [
+    {
+      "id": "cmqpw6se704e7slp5z6jfjtpe",
+      "title": "GLM-5.2 开源模型发布：744B 参数，1M 上下文，可本地运行",
+      "title_en": "Unsloth GLM-5.2 - 如何在本地运行",
+      "url": "https://unsloth.ai/docs/models/glm-5.2",
+      "source": "Hacker News 热门（buzzing.cc 中文翻译）",
+      "publishedAt": "2026-06-22T23:56:29.361Z",
+      "summary": "Z.ai 发布 GLM-5.2，开源 744B 参数（40B 活跃），1M 上下文窗口，性能与 Claude 4.8 Opus、GPT-5.5、Gemini 3.1 Pro 持平。通过 Unsloth 动态量化，2-bit GGUF 版本内存需求降至 239GB（-84%），1-bit 版降至 217GB（-86%），可运行于 256GB 统一内存 Mac 或 1×24GB GPU+256GB RAM。提供非思考、高、最大三种思考模式。评测显示动态 1-bit 准确率约 76.2%，2-bit 约 82%。",
+      "category": "tip",
+      "score": 84,
+      "selected": true
+    },
     {
       "id": "cmqpu6z9y03w3slp59okauzsw",
       "title": "Aleph 2.0 现已集成到 Figma Weave",

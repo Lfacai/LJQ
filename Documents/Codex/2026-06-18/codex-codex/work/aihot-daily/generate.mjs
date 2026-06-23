@@ -68,6 +68,14 @@ async function pruneOldSnapshots(retainDays = 30) {
   );
 }
 
+async function listSnapshotDates() {
+  const entries = await readdir(DATA_DIR, { withFileTypes: true }).catch(() => []);
+  return entries
+    .filter((entry) => entry.isFile() && /^\d{4}-\d{2}-\d{2}\.json$/.test(entry.name))
+    .map((entry) => entry.name.replace(/\.json$/, ""))
+    .sort((a, b) => dateKeyToDayNumber(b) - dateKeyToDayNumber(a));
+}
+
 function groupItems(items) {
   const order = ["ai-models", "ai-products", "industry", "paper", "tip", "unknown"];
   const grouped = new Map(order.map((key) => [key, []]));
@@ -138,16 +146,16 @@ ${css}
             <strong>手动更新</strong>
             <span class="manual-update-note">打开 GitHub Actions 手动运行页面，必要时可立即补跑一次更新。</span>
           </a>
-          <div class="date-switcher">
-            <label class="date-field" for="date-picker">
-              <span>查看历史日期</span>
-              <input id="date-picker" type="date" />
-            </label>
-            <div class="date-actions">
-              <button class="date-button" id="date-go" type="button">查看选中日期</button>
-              <button class="date-button ghost" id="date-latest" type="button">回到最新</button>
+          <div class="history-panel">
+            <div class="history-head">
+              <div>
+                <span class="history-kicker">历史日期</span>
+                <strong>点击即可切换到真实存档</strong>
+              </div>
+              <a class="history-link" href="./">回到最新</a>
             </div>
-            <p class="date-note">仅保留最近 30 天存档，超过期限的日期会自动清理。</p>
+            <div class="history-dates" id="history-dates"></div>
+            <p class="date-note">仅显示真实存在的存档，超过 30 天的日期会自动清理。</p>
           </div>
           <label class="search" for="search">
             <span>搜索标题 / 来源 / 摘要</span>
@@ -216,8 +224,17 @@ async function main() {
   await writeFile(datedPath, JSON.stringify(data, null, 2), "utf8");
   await writeFile(latestPath, JSON.stringify(data, null, 2), "utf8");
   await writeFile(aliasPath, JSON.stringify(data, null, 2), "utf8");
-  await writeFile(path.join(OUTPUT_DIR, "index.html"), buildHtml(data, css, js), "utf8");
   await pruneOldSnapshots(30);
+  const availableDates = await listSnapshotDates();
+  const manifest = {
+    source: "https://aihot.virxact.com",
+    generatedAt,
+    latestDate: snapshotDate,
+    retentionDays: 30,
+    availableDates,
+  };
+  await writeFile(path.join(DATA_DIR, "index.json"), JSON.stringify(manifest, null, 2), "utf8");
+  await writeFile(path.join(OUTPUT_DIR, "index.html"), buildHtml(data, css, js), "utf8");
   console.log(`Wrote ${items.length} items to ${path.join(OUTPUT_DIR, "data.json")}`);
 }
 
