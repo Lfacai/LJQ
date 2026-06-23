@@ -138,6 +138,17 @@ ${css}
             <strong>手动更新</strong>
             <span class="manual-update-note">打开 GitHub Actions 手动运行页面，必要时可立即补跑一次更新。</span>
           </a>
+          <div class="date-switcher">
+            <label class="date-field" for="date-picker">
+              <span>查看历史日期</span>
+              <input id="date-picker" type="date" />
+            </label>
+            <div class="date-actions">
+              <button class="date-button" id="date-go" type="button">查看选中日期</button>
+              <button class="date-button ghost" id="date-latest" type="button">回到最新</button>
+            </div>
+            <p class="date-note">仅保留最近 30 天存档，超过期限的日期会自动清理。</p>
+          </div>
           <label class="search" for="search">
             <span>搜索标题 / 来源 / 摘要</span>
             <input id="search" type="search" placeholder="试试输入 OpenAI、模型、论文..." />

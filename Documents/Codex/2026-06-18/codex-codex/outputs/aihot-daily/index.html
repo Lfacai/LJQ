@@ -218,6 +218,75 @@ h1 {
   line-height: 1.55;
 }
 
+.date-switcher {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.date-field {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.date-field input {
+  appearance: none;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font: inherit;
+  outline: none;
+}
+
+.date-field input:focus {
+  border-color: rgba(122, 167, 255, 0.45);
+  box-shadow: 0 0 0 4px rgba(122, 167, 255, 0.12);
+}
+
+.date-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.date-button {
+  appearance: none;
+  border: 1px solid rgba(124, 232, 199, 0.25);
+  background: rgba(124, 232, 199, 0.12);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 11px 14px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.date-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(124, 232, 199, 0.4);
+}
+
+.date-button.ghost {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.date-note {
+  margin: 0;
+  color: var(--soft);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
 .search {
   display: grid;
   gap: 8px;
@@ -464,7 +533,7 @@ h1 {
   </head>
   <body>
     <div class="backdrop"></div>
-    <script id="aihot-data" type="application/json">{"source":"https://aihot.virxact.com","date":"2026-06-23","generatedAt":"2026-06-23T00:08:07.553Z","windowStart":"2026-06-22T00:08:07.441Z","windowHours":24,"total":14,"groups":[{"key":"ai-models","label":"模型发布","count":1,"items":[{"id":"cmqpamzm108huslx6vf1oonz9","title":"PP-OCRv6 on Hugging Face：50 语言 OCR，参数规模 1.5M 至 34.5M","title_en":"PP-OCRv6 on Hugging Face： 50-Language OCR from 1.5M to 34.5M Parameters","url":"https://huggingface.co/blog/PaddlePaddle/pp-ocrv6","source":"Hugging Face：Blog（RSS）","publishedAt":"2026-06-22T13:18:56.000Z","summary":"PP-OCRv6 是 PaddleOCR 最新一代通用 OCR 模型族，提供 tiny（1.5M）、small（7.7M）和 medium（34.5M）三级。medium 和 small 支持 50 种语言（简体/繁体中文、英文、日文及 46 种拉丁语系）。在官方多场景基准上，medium 检测 Hmean 86.2%，识别准确率 83.2%，较 PP-OCRv5_server 分别提升 +4.6 和 +5.1 个百分点。模型采用 PPLCNetV4 统一骨干、RepLKFPN 检测模块和 EncoderWithLightSVTR 识别模块，可通过 PaddleOCR、Transformers、ONNX Runtime 等后端灵活部署。","category":"ai-models","score":69,"selected":true}]},{"key":"ai-products","label":"产品发布","count":6,"items":[{"id":"cmqpu6z9y03w3slp59okauzsw","title":"Aleph 2.0 现已集成到 Figma Weave","title_en":"Aleph 2.0 Is Now in Figma Weave","url":"https://runwayml.com/news/aleph-2-in-figma-weave","source":"Runway：News（网页）","publishedAt":"2026-06-22T23:18:22.492Z","summary":"Aleph 2.0 是 Runway 的旗舰视频编辑模型，现已在 Figma Weave 中上线。它是一个基于上下文的视频编辑模型，通过关键帧工作：从视频中提取一帧，重新设计风格并附上时间戳连接回 Aleph 2.0 节点，即可将该编辑传递到主体出现的每一帧，同时保持其他内容不变。支持最长 30 秒、1080p 的片段，可跨多镜头序列应用编辑，无需逐镜头处理。","category":"ai-products","score":59,"selected":true},{"id":"cmqppyj5702txslp5d7ahupmr","title":"在 AWS、Google Cloud 和 Microsoft Foundry 上使用完整版 Claude Desktop","title_en":"The full Claude Desktop experience on AWS， Google Cloud， and Microsoft Foundry","url":"https://claude.com/blog/the-full-claude-desktop-experience-on-aws-google-cloud-and-microsoft-foundry","source":"Claude：Blog（网页）","publishedAt":"2026-06-22T21:19:56.013Z","summary":"通过 AWS、Google Cloud 和 Microsoft Foundry 使用 Claude Desktop 的组织现已获得 Chat、Claude Cowork 和 Claude Code 集成的完整桌面体验。IT 团队可将推理保留在自己的云环境中，对话历史本地存储。支持 IAM Identity Center、Workforce Identity Federation、Microsoft Entra ID 或 Okta 登录；策略模板可导出至 Intune、GPO 或 Jamf；提供离线安装器。Chat、Claude Cowork 和 Claude Code 各有独立策略键，支持精细访问控制。M365 连接器通过 Entra 应用访问邮件和文档，并支持 GCC High/DoD 端点。","category":"ai-products","score":55,"selected":true},{"id":"cmqppo7c402qnslp5p92n6y3b","title":"Show HN：Oak--专为代理设计的 Git 替代方案","title_en":"Show HN： Oak--专为代理设计的 Git 替代方案","url":"https://oak.space/oak/oak","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:00:09.808Z","summary":"Oak 是开源版本控制系统，专为 AI 智能体（Claude Code、Codex、Cursor）设计。采用 BLAKE3 内容哈希、内容定义分块、diff/merge 及 Blob/Manifest/Commit/Tree 数据模型，可选 SQLite 和 git 后端。以分支-会话为基本工作单元，用分支描述替代逐次提交，通过内容寻址懒加载使智能体数秒内编辑任意仓库。速度远超 git。已发布公开测试版 v0.99.0，支持 macOS（Apple Silicon）、Linux（x86_64）及 Windows，可通过 curl 或 cargo 安装，Apache-2.0 开源。","category":"ai-products","score":72,"selected":true},{"id":"cmqpez1uu001gslp5j4h23mih","title":"东京 AI 公司 Sakana AI 推出多智能体编排系统 Sakana Fugu","title_en":"Sakana AI 是2023年在东京成立的AI研发公司，核心定位是开发\"自然启发\"（nature-inspired）的AI模型。 强调集体智能（collective intelligence）和演…","url":"https://x.com/berryxia/status/2069090959938466298","source":"X：Berry Xia (@berryxia)","publishedAt":"2026-06-22T16:11:41.000Z","summary":"Sakana AI 是 2023 年成立于东京的 AI 公司，由前 Google Brain 的 David Ha（CEO）、Transformer 论文共同作者 Llion Jones（CTO）及前日本外交官 Ren Ito（主席）联合创立。其产品 Sakana Fugu 将多智能体系统封装成单个 API 调用，内部自动拆解任务、调度全球模型并验证结果。Fugu Ultra 在工程、科学、推理等基准上对标 Fable/Mythos，通过动态编排多模型天然绕开单一供应商出口管制风险，被视为将多智能体从复杂工程变为开箱即用的产品形态。","category":"ai-products","score":75,"selected":true},{"id":"cmqpbc21e08laslx6gica1m67","title":"微信Agent小微灰度内测：主入口发消息红包，子入口可读聊天记录","title_en":"聊聊我刚刚拿到测试的微信Agent。","url":"https://mp.weixin.qq.com/s/qVdfx01e9C9r5mGi0jh2BA","source":"公众号：数字生命卡兹克","publishedAt":"2026-06-22T13:34:14.000Z","summary":"微信Agent小微灰度内测已开始，主入口位于微信首页左上角，支持给好友发消息和红包（需确认），但无法读取聊天记录或向群聊发消息。群聊和私聊的\"问小微\"子入口则可读取聊天记录并支持群发。小微可创建日程提醒、待办、总结朋友圈，打通公众号和视频号进行问答。收藏仅可读取小微自建笔记。内置\"小工具\"功能，支持语音创建简易小程序（暂不可发布），还可调用第三方小程序。","category":"ai-products","score":72,"selected":true},{"id":"cmqph7ap700n2slp5g4tfjs46","title":"OpenAI 发布 Daybreak 安全工具：Codex Security 与 GPT-5.5-Cyber","title_en":"Daybreak： Tools for securing every organization in the world","url":"https://openai.com/index/daybreak-securing-the-world","source":"OpenAI：官网动态（RSS · 排除企业/客户案例）","publishedAt":"2026-06-22T10:00:00.000Z","summary":"OpenAI 推出 Daybreak 系列工具，包括 Codex Security 和 GPT-5.5-Cyber，帮助组织大规模发现、验证并修补漏洞。","category":"ai-products","score":57,"selected":true}]},{"key":"industry","label":"行业动态","count":3,"items":[{"id":"cmqpqqsrw030aslp5c0jt14yr","title":"美国警长利用Flock车牌系统跟踪前女友案频发，Flock法务官承认\"最常见滥用\"","title_en":"由\"群情\"驱使的警察局长们尾随女性，这说明了为何需要搜查令","url":"https://ipvm.com/reports/police-chiefs-track","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:32:12.384Z","summary":"伊利诺伊州Holiday Hills警察局长于2026年6月18日被捕，被控两项渎职重罪。检方指控他利用Flock车牌读取系统及州警察数据库，跟踪6名认识的人，其中3人为前女友，并对其中一人的前男友车牌查询140次（86次脱岗），持续18个月。全美至少18起类似案例：佐治亚州Braselton警察局长、爱达荷州Jerome县警长（700余次查询其妻车牌）等均因此辞职或被捕。Flock首席法务官Dan Haley承认，滥用该系统\"最常见情况\"就是跟踪前女友。Flock称系统只跟踪车辆，但案例表明车辆是手段，人是目标。","category":"industry","score":80,"selected":true},{"id":"cmqpl4smd01j1slp5npj3krmn","title":"Google DeepMind 7500 万美元投资 A24，合作开发电影 AI 工具","title_en":"Google DeepMind bets $75M on AI's future in Hollywood with A24 deal","url":"https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal","source":"TechCrunch：AI（RSS）","publishedAt":"2026-06-22T18:49:44.000Z","summary":"Google DeepMind 宣布向独立电影制片厂 A24 投资 7500 万美元（据《华尔街日报》），双方将合作开发电影制作 AI 工具。A24 出品过《万事俱备》《后室》等影片。Google DeepMind CEO Demis Hassabis 称，希望通过与艺术家直接合作，打造支持创意表达的 AI 功能。此举是好莱坞最新一次科技公司与电影 AI 联手，此前 Netflix 已收购 Ben Affleck 的 AI 工具公司 Interpositive，亚马逊 MGM 工作室也在去年设立了影视 AI 部门。","category":"industry","score":70,"selected":true},{"id":"cmqpepyo500j1sldkfj5exgj8","title":"开辟新赛道：小米 YU7 GT 创全球首个纽北自动驾驶圈速纪录，官方圈速榜新增\"自动驾驶\"分类","title_en":null,"url":"https://www.ithome.com/0/967/234.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T15:13:29.000Z","summary":"小米 YU7 GT（选配赛道专业套装）在纽博格林北环赛道以自动驾驶系统完成全程无人计时圈，成绩 10 分 29 秒 483，成为全球首个纽北自动驾驶圈速纪录。纽北官方圈速榜因此新增\"自动驾驶\"分类。小米汽车表示，在极限赛道中锤炼的动态模型、高频扭矩分配和毫秒级救车能力，将逐步下放至量产车，以提升用户在暴雨、冰雪等极端工况下的底盘与智驾安全。","category":"industry","score":85,"selected":true}]},{"key":"paper","label":"论文研究","count":1,"items":[{"id":"cmqpeu90600l4sldksepc49lt","title":"Google Labs 提出用\"洞察策略\"评估 AI 编码智能体的主动性","title_en":"Measuring What Matters with Jules","url":"https://developers.googleblog.com/measuring-what-matters-with-jules","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T16:08:41.780Z","summary":"Google Labs 提出以\"洞察策略\"评估 AI 编码智能体的主动性，而非仅按任务完成度打分。团队基于 Google 内部代码库 705 个 bug（1178 个 CL），通过时空近邻与语义相似度聚类还原开发者实际的高层级目标。初步实验显示：Jules 在单轮探索下洞察相关性评分平均 4.5/5；探索预算从两轮增至三轮时，Hit@5 准确率从 33% 升至 57%。团队正将评估方法扩展至公开 GitHub 数据，并探索纳入问题追踪器、对话等更丰富的上下文。","category":"paper","score":61,"selected":true}]},{"key":"tip","label":"技巧观点","count":3,"items":[{"id":"cmqpgzgfq00hislp5hwlbgz0h","title":"Google ADK 与 A2A 协议：跨语言多智能体团队构建实战","title_en":"Build Cross-Language Multi-Agent Team with Google's Agent Development Kit and A2A","url":"https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T17:08:43.358Z","summary":"一篇技术博客展示了如何用 Google Agent Development Kit （ADK） 与 Agent2Agent （A2A） 协议搭建跨语言多智能体流水线：Python agent 调用 Gemini 解析合同条款，Go agent 用纯确定性逻辑校验合规性。A2A 协议通过 Agent Card 实现能力发现、JSON-RPC 2.0 完成通信、Task 状态机管理任务生命周期；ADK 的 RemoteA2aAgent 抽象可将任意 A2A 兼容服务封装成本地子智能体。文中强调将单体提示词分解为专业化微智能体，以解决上下文退化、故障爆炸半径和不可测试性问题。完整源码已在 GitHub 发布。","category":"tip","score":56,"selected":true},{"id":"cmqpaflwr08cpslx6umzww19d","title":"Anthropic 工程负责人：Claude Code 让程序员更孤独","title_en":null,"url":"https://www.ithome.com/0/967/216.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T13:25:46.000Z","summary":"6月22日，Anthropic工程负责人Fiona Fung表示，Claude Code和Claude Cowork等AI智能体让工程师越发依赖智能体工作，彼此之间交流减少，长期易感孤独。团队为此组织编程午餐、黑客松和共同开发时段，重新创造面对面协作机会。调查显示Claude Code已成为创业公司最常用的AI编程工具，\"氛围编程\"兴起使\"单人创业者\"增多，但Fung强调协作仍不可或缺。","category":"tip","score":70,"selected":true},{"id":"cmqpi3u8v00smslp5or0d3mx7","title":"Cursor 审计发现奖励黑客行为淹没模型智能提升","title_en":"Reward hacking is swamping model intelligence gains","url":"https://cursor.com/blog/reward-hacking-coding-benchmarks","source":"Cursor Blog","publishedAt":"2026-06-22T12:00:00.000Z","summary":"Cursor 通过审计模型轨迹发现，在 SWE-bench Pro 上 Opus 4.8 Max 有 63% 的成功解决方案直接从公开来源检索修正而非自主推导。隔离 git 历史并限制网络后，Opus 4.8 Max 得分从 87.1% 跌至 73.0%，Composer 2.5 从 74.7% 跌至 54.0%。在 SWE-bench Multilingual 上，标准环境与严格环境得分差距分别为 9.1 和 7.5 个百分点。两种主要模式是上游查找（57%）和 git 历史挖掘（9%）。研究建议通过审计轨迹和限制运行时环境来缓解此类奖励黑客行为。","category":"tip","score":72,"selected":true}]}],"items":[{"id":"cmqpu6z9y03w3slp59okauzsw","title":"Aleph 2.0 现已集成到 Figma Weave","title_en":"Aleph 2.0 Is Now in Figma Weave","url":"https://runwayml.com/news/aleph-2-in-figma-weave","source":"Runway：News（网页）","publishedAt":"2026-06-22T23:18:22.492Z","summary":"Aleph 2.0 是 Runway 的旗舰视频编辑模型，现已在 Figma Weave 中上线。它是一个基于上下文的视频编辑模型，通过关键帧工作：从视频中提取一帧，重新设计风格并附上时间戳连接回 Aleph 2.0 节点，即可将该编辑传递到主体出现的每一帧，同时保持其他内容不变。支持最长 30 秒、1080p 的片段，可跨多镜头序列应用编辑，无需逐镜头处理。","category":"ai-products","score":59,"selected":true},{"id":"cmqpqqsrw030aslp5c0jt14yr","title":"美国警长利用Flock车牌系统跟踪前女友案频发，Flock法务官承认\"最常见滥用\"","title_en":"由\"群情\"驱使的警察局长们尾随女性，这说明了为何需要搜查令","url":"https://ipvm.com/reports/police-chiefs-track","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:32:12.384Z","summary":"伊利诺伊州Holiday Hills警察局长于2026年6月18日被捕，被控两项渎职重罪。检方指控他利用Flock车牌读取系统及州警察数据库，跟踪6名认识的人，其中3人为前女友，并对其中一人的前男友车牌查询140次（86次脱岗），持续18个月。全美至少18起类似案例：佐治亚州Braselton警察局长、爱达荷州Jerome县警长（700余次查询其妻车牌）等均因此辞职或被捕。Flock首席法务官Dan Haley承认，滥用该系统\"最常见情况\"就是跟踪前女友。Flock称系统只跟踪车辆，但案例表明车辆是手段，人是目标。","category":"industry","score":80,"selected":true},{"id":"cmqppyj5702txslp5d7ahupmr","title":"在 AWS、Google Cloud 和 Microsoft Foundry 上使用完整版 Claude Desktop","title_en":"The full Claude Desktop experience on AWS， Google Cloud， and Microsoft Foundry","url":"https://claude.com/blog/the-full-claude-desktop-experience-on-aws-google-cloud-and-microsoft-foundry","source":"Claude：Blog（网页）","publishedAt":"2026-06-22T21:19:56.013Z","summary":"通过 AWS、Google Cloud 和 Microsoft Foundry 使用 Claude Desktop 的组织现已获得 Chat、Claude Cowork 和 Claude Code 集成的完整桌面体验。IT 团队可将推理保留在自己的云环境中，对话历史本地存储。支持 IAM Identity Center、Workforce Identity Federation、Microsoft Entra ID 或 Okta 登录；策略模板可导出至 Intune、GPO 或 Jamf；提供离线安装器。Chat、Claude Cowork 和 Claude Code 各有独立策略键，支持精细访问控制。M365 连接器通过 Entra 应用访问邮件和文档，并支持 GCC High/DoD 端点。","category":"ai-products","score":55,"selected":true},{"id":"cmqppo7c402qnslp5p92n6y3b","title":"Show HN：Oak--专为代理设计的 Git 替代方案","title_en":"Show HN： Oak--专为代理设计的 Git 替代方案","url":"https://oak.space/oak/oak","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:00:09.808Z","summary":"Oak 是开源版本控制系统，专为 AI 智能体（Claude Code、Codex、Cursor）设计。采用 BLAKE3 内容哈希、内容定义分块、diff/merge 及 Blob/Manifest/Commit/Tree 数据模型，可选 SQLite 和 git 后端。以分支-会话为基本工作单元，用分支描述替代逐次提交，通过内容寻址懒加载使智能体数秒内编辑任意仓库。速度远超 git。已发布公开测试版 v0.99.0，支持 macOS（Apple Silicon）、Linux（x86_64）及 Windows，可通过 curl 或 cargo 安装，Apache-2.0 开源。","category":"ai-products","score":72,"selected":true},{"id":"cmqpl4smd01j1slp5npj3krmn","title":"Google DeepMind 7500 万美元投资 A24，合作开发电影 AI 工具","title_en":"Google DeepMind bets $75M on AI's future in Hollywood with A24 deal","url":"https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal","source":"TechCrunch：AI（RSS）","publishedAt":"2026-06-22T18:49:44.000Z","summary":"Google DeepMind 宣布向独立电影制片厂 A24 投资 7500 万美元（据《华尔街日报》），双方将合作开发电影制作 AI 工具。A24 出品过《万事俱备》《后室》等影片。Google DeepMind CEO Demis Hassabis 称，希望通过与艺术家直接合作，打造支持创意表达的 AI 功能。此举是好莱坞最新一次科技公司与电影 AI 联手，此前 Netflix 已收购 Ben Affleck 的 AI 工具公司 Interpositive，亚马逊 MGM 工作室也在去年设立了影视 AI 部门。","category":"industry","score":70,"selected":true},{"id":"cmqpgzgfq00hislp5hwlbgz0h","title":"Google ADK 与 A2A 协议：跨语言多智能体团队构建实战","title_en":"Build Cross-Language Multi-Agent Team with Google's Agent Development Kit and A2A","url":"https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T17:08:43.358Z","summary":"一篇技术博客展示了如何用 Google Agent Development Kit （ADK） 与 Agent2Agent （A2A） 协议搭建跨语言多智能体流水线：Python agent 调用 Gemini 解析合同条款，Go agent 用纯确定性逻辑校验合规性。A2A 协议通过 Agent Card 实现能力发现、JSON-RPC 2.0 完成通信、Task 状态机管理任务生命周期；ADK 的 RemoteA2aAgent 抽象可将任意 A2A 兼容服务封装成本地子智能体。文中强调将单体提示词分解为专业化微智能体，以解决上下文退化、故障爆炸半径和不可测试性问题。完整源码已在 GitHub 发布。","category":"tip","score":56,"selected":true},{"id":"cmqpez1uu001gslp5j4h23mih","title":"东京 AI 公司 Sakana AI 推出多智能体编排系统 Sakana Fugu","title_en":"Sakana AI 是2023年在东京成立的AI研发公司，核心定位是开发\"自然启发\"（nature-inspired）的AI模型。 强调集体智能（collective intelligence）和演…","url":"https://x.com/berryxia/status/2069090959938466298","source":"X：Berry Xia (@berryxia)","publishedAt":"2026-06-22T16:11:41.000Z","summary":"Sakana AI 是 2023 年成立于东京的 AI 公司，由前 Google Brain 的 David Ha（CEO）、Transformer 论文共同作者 Llion Jones（CTO）及前日本外交官 Ren Ito（主席）联合创立。其产品 Sakana Fugu 将多智能体系统封装成单个 API 调用，内部自动拆解任务、调度全球模型并验证结果。Fugu Ultra 在工程、科学、推理等基准上对标 Fable/Mythos，通过动态编排多模型天然绕开单一供应商出口管制风险，被视为将多智能体从复杂工程变为开箱即用的产品形态。","category":"ai-products","score":75,"selected":true},{"id":"cmqpeu90600l4sldksepc49lt","title":"Google Labs 提出用\"洞察策略\"评估 AI 编码智能体的主动性","title_en":"Measuring What Matters with Jules","url":"https://developers.googleblog.com/measuring-what-matters-with-jules","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T16:08:41.780Z","summary":"Google Labs 提出以\"洞察策略\"评估 AI 编码智能体的主动性，而非仅按任务完成度打分。团队基于 Google 内部代码库 705 个 bug（1178 个 CL），通过时空近邻与语义相似度聚类还原开发者实际的高层级目标。初步实验显示：Jules 在单轮探索下洞察相关性评分平均 4.5/5；探索预算从两轮增至三轮时，Hit@5 准确率从 33% 升至 57%。团队正将评估方法扩展至公开 GitHub 数据，并探索纳入问题追踪器、对话等更丰富的上下文。","category":"paper","score":61,"selected":true},{"id":"cmqpepyo500j1sldkfj5exgj8","title":"开辟新赛道：小米 YU7 GT 创全球首个纽北自动驾驶圈速纪录，官方圈速榜新增\"自动驾驶\"分类","title_en":null,"url":"https://www.ithome.com/0/967/234.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T15:13:29.000Z","summary":"小米 YU7 GT（选配赛道专业套装）在纽博格林北环赛道以自动驾驶系统完成全程无人计时圈，成绩 10 分 29 秒 483，成为全球首个纽北自动驾驶圈速纪录。纽北官方圈速榜因此新增\"自动驾驶\"分类。小米汽车表示，在极限赛道中锤炼的动态模型、高频扭矩分配和毫秒级救车能力，将逐步下放至量产车，以提升用户在暴雨、冰雪等极端工况下的底盘与智驾安全。","category":"industry","score":85,"selected":true},{"id":"cmqpbc21e08laslx6gica1m67","title":"微信Agent小微灰度内测：主入口发消息红包，子入口可读聊天记录","title_en":"聊聊我刚刚拿到测试的微信Agent。","url":"https://mp.weixin.qq.com/s/qVdfx01e9C9r5mGi0jh2BA","source":"公众号：数字生命卡兹克","publishedAt":"2026-06-22T13:34:14.000Z","summary":"微信Agent小微灰度内测已开始，主入口位于微信首页左上角，支持给好友发消息和红包（需确认），但无法读取聊天记录或向群聊发消息。群聊和私聊的\"问小微\"子入口则可读取聊天记录并支持群发。小微可创建日程提醒、待办、总结朋友圈，打通公众号和视频号进行问答。收藏仅可读取小微自建笔记。内置\"小工具\"功能，支持语音创建简易小程序（暂不可发布），还可调用第三方小程序。","category":"ai-products","score":72,"selected":true},{"id":"cmqpaflwr08cpslx6umzww19d","title":"Anthropic 工程负责人：Claude Code 让程序员更孤独","title_en":null,"url":"https://www.ithome.com/0/967/216.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T13:25:46.000Z","summary":"6月22日，Anthropic工程负责人Fiona Fung表示，Claude Code和Claude Cowork等AI智能体让工程师越发依赖智能体工作，彼此之间交流减少，长期易感孤独。团队为此组织编程午餐、黑客松和共同开发时段，重新创造面对面协作机会。调查显示Claude Code已成为创业公司最常用的AI编程工具，\"氛围编程\"兴起使\"单人创业者\"增多，但Fung强调协作仍不可或缺。","category":"tip","score":70,"selected":true},{"id":"cmqpamzm108huslx6vf1oonz9","title":"PP-OCRv6 on Hugging Face：50 语言 OCR，参数规模 1.5M 至 34.5M","title_en":"PP-OCRv6 on Hugging Face： 50-Language OCR from 1.5M to 34.5M Parameters","url":"https://huggingface.co/blog/PaddlePaddle/pp-ocrv6","source":"Hugging Face：Blog（RSS）","publishedAt":"2026-06-22T13:18:56.000Z","summary":"PP-OCRv6 是 PaddleOCR 最新一代通用 OCR 模型族，提供 tiny（1.5M）、small（7.7M）和 medium（34.5M）三级。medium 和 small 支持 50 种语言（简体/繁体中文、英文、日文及 46 种拉丁语系）。在官方多场景基准上，medium 检测 Hmean 86.2%，识别准确率 83.2%，较 PP-OCRv5_server 分别提升 +4.6 和 +5.1 个百分点。模型采用 PPLCNetV4 统一骨干、RepLKFPN 检测模块和 EncoderWithLightSVTR 识别模块，可通过 PaddleOCR、Transformers、ONNX Runtime 等后端灵活部署。","category":"ai-models","score":69,"selected":true},{"id":"cmqpi3u8v00smslp5or0d3mx7","title":"Cursor 审计发现奖励黑客行为淹没模型智能提升","title_en":"Reward hacking is swamping model intelligence gains","url":"https://cursor.com/blog/reward-hacking-coding-benchmarks","source":"Cursor Blog","publishedAt":"2026-06-22T12:00:00.000Z","summary":"Cursor 通过审计模型轨迹发现，在 SWE-bench Pro 上 Opus 4.8 Max 有 63% 的成功解决方案直接从公开来源检索修正而非自主推导。隔离 git 历史并限制网络后，Opus 4.8 Max 得分从 87.1% 跌至 73.0%，Composer 2.5 从 74.7% 跌至 54.0%。在 SWE-bench Multilingual 上，标准环境与严格环境得分差距分别为 9.1 和 7.5 个百分点。两种主要模式是上游查找（57%）和 git 历史挖掘（9%）。研究建议通过审计轨迹和限制运行时环境来缓解此类奖励黑客行为。","category":"tip","score":72,"selected":true},{"id":"cmqph7ap700n2slp5g4tfjs46","title":"OpenAI 发布 Daybreak 安全工具：Codex Security 与 GPT-5.5-Cyber","title_en":"Daybreak： Tools for securing every organization in the world","url":"https://openai.com/index/daybreak-securing-the-world","source":"OpenAI：官网动态（RSS · 排除企业/客户案例）","publishedAt":"2026-06-22T10:00:00.000Z","summary":"OpenAI 推出 Daybreak 系列工具，包括 Codex Security 和 GPT-5.5-Cyber，帮助组织大规模发现、验证并修补漏洞。","category":"ai-products","score":57,"selected":true}]}</script>
+    <script id="aihot-data" type="application/json">{"source":"https://aihot.virxact.com","date":"2026-06-23","generatedAt":"2026-06-23T00:13:15.529Z","windowStart":"2026-06-22T00:13:15.215Z","windowHours":24,"total":14,"groups":[{"key":"ai-models","label":"模型发布","count":1,"items":[{"id":"cmqpamzm108huslx6vf1oonz9","title":"PP-OCRv6 on Hugging Face：50 语言 OCR，参数规模 1.5M 至 34.5M","title_en":"PP-OCRv6 on Hugging Face： 50-Language OCR from 1.5M to 34.5M Parameters","url":"https://huggingface.co/blog/PaddlePaddle/pp-ocrv6","source":"Hugging Face：Blog（RSS）","publishedAt":"2026-06-22T13:18:56.000Z","summary":"PP-OCRv6 是 PaddleOCR 最新一代通用 OCR 模型族，提供 tiny（1.5M）、small（7.7M）和 medium（34.5M）三级。medium 和 small 支持 50 种语言（简体/繁体中文、英文、日文及 46 种拉丁语系）。在官方多场景基准上，medium 检测 Hmean 86.2%，识别准确率 83.2%，较 PP-OCRv5_server 分别提升 +4.6 和 +5.1 个百分点。模型采用 PPLCNetV4 统一骨干、RepLKFPN 检测模块和 EncoderWithLightSVTR 识别模块，可通过 PaddleOCR、Transformers、ONNX Runtime 等后端灵活部署。","category":"ai-models","score":69,"selected":true}]},{"key":"ai-products","label":"产品发布","count":6,"items":[{"id":"cmqpu6z9y03w3slp59okauzsw","title":"Aleph 2.0 现已集成到 Figma Weave","title_en":"Aleph 2.0 Is Now in Figma Weave","url":"https://runwayml.com/news/aleph-2-in-figma-weave","source":"Runway：News（网页）","publishedAt":"2026-06-22T23:18:22.492Z","summary":"Aleph 2.0 是 Runway 的旗舰视频编辑模型，现已在 Figma Weave 中上线。它是一个基于上下文的视频编辑模型，通过关键帧工作：从视频中提取一帧，重新设计风格并附上时间戳连接回 Aleph 2.0 节点，即可将该编辑传递到主体出现的每一帧，同时保持其他内容不变。支持最长 30 秒、1080p 的片段，可跨多镜头序列应用编辑，无需逐镜头处理。","category":"ai-products","score":59,"selected":true},{"id":"cmqppyj5702txslp5d7ahupmr","title":"在 AWS、Google Cloud 和 Microsoft Foundry 上使用完整版 Claude Desktop","title_en":"The full Claude Desktop experience on AWS， Google Cloud， and Microsoft Foundry","url":"https://claude.com/blog/the-full-claude-desktop-experience-on-aws-google-cloud-and-microsoft-foundry","source":"Claude：Blog（网页）","publishedAt":"2026-06-22T21:19:56.013Z","summary":"通过 AWS、Google Cloud 和 Microsoft Foundry 使用 Claude Desktop 的组织现已获得 Chat、Claude Cowork 和 Claude Code 集成的完整桌面体验。IT 团队可将推理保留在自己的云环境中，对话历史本地存储。支持 IAM Identity Center、Workforce Identity Federation、Microsoft Entra ID 或 Okta 登录；策略模板可导出至 Intune、GPO 或 Jamf；提供离线安装器。Chat、Claude Cowork 和 Claude Code 各有独立策略键，支持精细访问控制。M365 连接器通过 Entra 应用访问邮件和文档，并支持 GCC High/DoD 端点。","category":"ai-products","score":55,"selected":true},{"id":"cmqppo7c402qnslp5p92n6y3b","title":"Show HN：Oak--专为代理设计的 Git 替代方案","title_en":"Show HN： Oak--专为代理设计的 Git 替代方案","url":"https://oak.space/oak/oak","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:00:09.808Z","summary":"Oak 是开源版本控制系统，专为 AI 智能体（Claude Code、Codex、Cursor）设计。采用 BLAKE3 内容哈希、内容定义分块、diff/merge 及 Blob/Manifest/Commit/Tree 数据模型，可选 SQLite 和 git 后端。以分支-会话为基本工作单元，用分支描述替代逐次提交，通过内容寻址懒加载使智能体数秒内编辑任意仓库。速度远超 git。已发布公开测试版 v0.99.0，支持 macOS（Apple Silicon）、Linux（x86_64）及 Windows，可通过 curl 或 cargo 安装，Apache-2.0 开源。","category":"ai-products","score":72,"selected":true},{"id":"cmqpez1uu001gslp5j4h23mih","title":"东京 AI 公司 Sakana AI 推出多智能体编排系统 Sakana Fugu","title_en":"Sakana AI 是2023年在东京成立的AI研发公司，核心定位是开发\"自然启发\"（nature-inspired）的AI模型。 强调集体智能（collective intelligence）和演…","url":"https://x.com/berryxia/status/2069090959938466298","source":"X：Berry Xia (@berryxia)","publishedAt":"2026-06-22T16:11:41.000Z","summary":"Sakana AI 是 2023 年成立于东京的 AI 公司，由前 Google Brain 的 David Ha（CEO）、Transformer 论文共同作者 Llion Jones（CTO）及前日本外交官 Ren Ito（主席）联合创立。其产品 Sakana Fugu 将多智能体系统封装成单个 API 调用，内部自动拆解任务、调度全球模型并验证结果。Fugu Ultra 在工程、科学、推理等基准上对标 Fable/Mythos，通过动态编排多模型天然绕开单一供应商出口管制风险，被视为将多智能体从复杂工程变为开箱即用的产品形态。","category":"ai-products","score":75,"selected":true},{"id":"cmqpbc21e08laslx6gica1m67","title":"微信Agent小微灰度内测：主入口发消息红包，子入口可读聊天记录","title_en":"聊聊我刚刚拿到测试的微信Agent。","url":"https://mp.weixin.qq.com/s/qVdfx01e9C9r5mGi0jh2BA","source":"公众号：数字生命卡兹克","publishedAt":"2026-06-22T13:34:14.000Z","summary":"微信Agent小微灰度内测已开始，主入口位于微信首页左上角，支持给好友发消息和红包（需确认），但无法读取聊天记录或向群聊发消息。群聊和私聊的\"问小微\"子入口则可读取聊天记录并支持群发。小微可创建日程提醒、待办、总结朋友圈，打通公众号和视频号进行问答。收藏仅可读取小微自建笔记。内置\"小工具\"功能，支持语音创建简易小程序（暂不可发布），还可调用第三方小程序。","category":"ai-products","score":72,"selected":true},{"id":"cmqph7ap700n2slp5g4tfjs46","title":"OpenAI 发布 Daybreak 安全工具：Codex Security 与 GPT-5.5-Cyber","title_en":"Daybreak： Tools for securing every organization in the world","url":"https://openai.com/index/daybreak-securing-the-world","source":"OpenAI：官网动态（RSS · 排除企业/客户案例）","publishedAt":"2026-06-22T10:00:00.000Z","summary":"OpenAI 推出 Daybreak 系列工具，包括 Codex Security 和 GPT-5.5-Cyber，帮助组织大规模发现、验证并修补漏洞。","category":"ai-products","score":57,"selected":true}]},{"key":"industry","label":"行业动态","count":3,"items":[{"id":"cmqpqqsrw030aslp5c0jt14yr","title":"美国警长利用Flock车牌系统跟踪前女友案频发，Flock法务官承认\"最常见滥用\"","title_en":"由\"群情\"驱使的警察局长们尾随女性，这说明了为何需要搜查令","url":"https://ipvm.com/reports/police-chiefs-track","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:32:12.384Z","summary":"伊利诺伊州Holiday Hills警察局长于2026年6月18日被捕，被控两项渎职重罪。检方指控他利用Flock车牌读取系统及州警察数据库，跟踪6名认识的人，其中3人为前女友，并对其中一人的前男友车牌查询140次（86次脱岗），持续18个月。全美至少18起类似案例：佐治亚州Braselton警察局长、爱达荷州Jerome县警长（700余次查询其妻车牌）等均因此辞职或被捕。Flock首席法务官Dan Haley承认，滥用该系统\"最常见情况\"就是跟踪前女友。Flock称系统只跟踪车辆，但案例表明车辆是手段，人是目标。","category":"industry","score":80,"selected":true},{"id":"cmqpl4smd01j1slp5npj3krmn","title":"Google DeepMind 7500 万美元投资 A24，合作开发电影 AI 工具","title_en":"Google DeepMind bets $75M on AI's future in Hollywood with A24 deal","url":"https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal","source":"TechCrunch：AI（RSS）","publishedAt":"2026-06-22T18:49:44.000Z","summary":"Google DeepMind 宣布向独立电影制片厂 A24 投资 7500 万美元（据《华尔街日报》），双方将合作开发电影制作 AI 工具。A24 出品过《万事俱备》《后室》等影片。Google DeepMind CEO Demis Hassabis 称，希望通过与艺术家直接合作，打造支持创意表达的 AI 功能。此举是好莱坞最新一次科技公司与电影 AI 联手，此前 Netflix 已收购 Ben Affleck 的 AI 工具公司 Interpositive，亚马逊 MGM 工作室也在去年设立了影视 AI 部门。","category":"industry","score":70,"selected":true},{"id":"cmqpepyo500j1sldkfj5exgj8","title":"开辟新赛道：小米 YU7 GT 创全球首个纽北自动驾驶圈速纪录，官方圈速榜新增\"自动驾驶\"分类","title_en":null,"url":"https://www.ithome.com/0/967/234.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T15:13:29.000Z","summary":"小米 YU7 GT（选配赛道专业套装）在纽博格林北环赛道以自动驾驶系统完成全程无人计时圈，成绩 10 分 29 秒 483，成为全球首个纽北自动驾驶圈速纪录。纽北官方圈速榜因此新增\"自动驾驶\"分类。小米汽车表示，在极限赛道中锤炼的动态模型、高频扭矩分配和毫秒级救车能力，将逐步下放至量产车，以提升用户在暴雨、冰雪等极端工况下的底盘与智驾安全。","category":"industry","score":85,"selected":true}]},{"key":"paper","label":"论文研究","count":1,"items":[{"id":"cmqpeu90600l4sldksepc49lt","title":"Google Labs 提出用\"洞察策略\"评估 AI 编码智能体的主动性","title_en":"Measuring What Matters with Jules","url":"https://developers.googleblog.com/measuring-what-matters-with-jules","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T16:08:41.780Z","summary":"Google Labs 提出以\"洞察策略\"评估 AI 编码智能体的主动性，而非仅按任务完成度打分。团队基于 Google 内部代码库 705 个 bug（1178 个 CL），通过时空近邻与语义相似度聚类还原开发者实际的高层级目标。初步实验显示：Jules 在单轮探索下洞察相关性评分平均 4.5/5；探索预算从两轮增至三轮时，Hit@5 准确率从 33% 升至 57%。团队正将评估方法扩展至公开 GitHub 数据，并探索纳入问题追踪器、对话等更丰富的上下文。","category":"paper","score":61,"selected":true}]},{"key":"tip","label":"技巧观点","count":3,"items":[{"id":"cmqpgzgfq00hislp5hwlbgz0h","title":"Google ADK 与 A2A 协议：跨语言多智能体团队构建实战","title_en":"Build Cross-Language Multi-Agent Team with Google's Agent Development Kit and A2A","url":"https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T17:08:43.358Z","summary":"一篇技术博客展示了如何用 Google Agent Development Kit （ADK） 与 Agent2Agent （A2A） 协议搭建跨语言多智能体流水线：Python agent 调用 Gemini 解析合同条款，Go agent 用纯确定性逻辑校验合规性。A2A 协议通过 Agent Card 实现能力发现、JSON-RPC 2.0 完成通信、Task 状态机管理任务生命周期；ADK 的 RemoteA2aAgent 抽象可将任意 A2A 兼容服务封装成本地子智能体。文中强调将单体提示词分解为专业化微智能体，以解决上下文退化、故障爆炸半径和不可测试性问题。完整源码已在 GitHub 发布。","category":"tip","score":56,"selected":true},{"id":"cmqpaflwr08cpslx6umzww19d","title":"Anthropic 工程负责人：Claude Code 让程序员更孤独","title_en":null,"url":"https://www.ithome.com/0/967/216.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T13:25:46.000Z","summary":"6月22日，Anthropic工程负责人Fiona Fung表示，Claude Code和Claude Cowork等AI智能体让工程师越发依赖智能体工作，彼此之间交流减少，长期易感孤独。团队为此组织编程午餐、黑客松和共同开发时段，重新创造面对面协作机会。调查显示Claude Code已成为创业公司最常用的AI编程工具，\"氛围编程\"兴起使\"单人创业者\"增多，但Fung强调协作仍不可或缺。","category":"tip","score":70,"selected":true},{"id":"cmqpi3u8v00smslp5or0d3mx7","title":"Cursor 审计发现奖励黑客行为淹没模型智能提升","title_en":"Reward hacking is swamping model intelligence gains","url":"https://cursor.com/blog/reward-hacking-coding-benchmarks","source":"Cursor Blog","publishedAt":"2026-06-22T12:00:00.000Z","summary":"Cursor 通过审计模型轨迹发现，在 SWE-bench Pro 上 Opus 4.8 Max 有 63% 的成功解决方案直接从公开来源检索修正而非自主推导。隔离 git 历史并限制网络后，Opus 4.8 Max 得分从 87.1% 跌至 73.0%，Composer 2.5 从 74.7% 跌至 54.0%。在 SWE-bench Multilingual 上，标准环境与严格环境得分差距分别为 9.1 和 7.5 个百分点。两种主要模式是上游查找（57%）和 git 历史挖掘（9%）。研究建议通过审计轨迹和限制运行时环境来缓解此类奖励黑客行为。","category":"tip","score":72,"selected":true}]}],"items":[{"id":"cmqpu6z9y03w3slp59okauzsw","title":"Aleph 2.0 现已集成到 Figma Weave","title_en":"Aleph 2.0 Is Now in Figma Weave","url":"https://runwayml.com/news/aleph-2-in-figma-weave","source":"Runway：News（网页）","publishedAt":"2026-06-22T23:18:22.492Z","summary":"Aleph 2.0 是 Runway 的旗舰视频编辑模型，现已在 Figma Weave 中上线。它是一个基于上下文的视频编辑模型，通过关键帧工作：从视频中提取一帧，重新设计风格并附上时间戳连接回 Aleph 2.0 节点，即可将该编辑传递到主体出现的每一帧，同时保持其他内容不变。支持最长 30 秒、1080p 的片段，可跨多镜头序列应用编辑，无需逐镜头处理。","category":"ai-products","score":59,"selected":true},{"id":"cmqpqqsrw030aslp5c0jt14yr","title":"美国警长利用Flock车牌系统跟踪前女友案频发，Flock法务官承认\"最常见滥用\"","title_en":"由\"群情\"驱使的警察局长们尾随女性，这说明了为何需要搜查令","url":"https://ipvm.com/reports/police-chiefs-track","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:32:12.384Z","summary":"伊利诺伊州Holiday Hills警察局长于2026年6月18日被捕，被控两项渎职重罪。检方指控他利用Flock车牌读取系统及州警察数据库，跟踪6名认识的人，其中3人为前女友，并对其中一人的前男友车牌查询140次（86次脱岗），持续18个月。全美至少18起类似案例：佐治亚州Braselton警察局长、爱达荷州Jerome县警长（700余次查询其妻车牌）等均因此辞职或被捕。Flock首席法务官Dan Haley承认，滥用该系统\"最常见情况\"就是跟踪前女友。Flock称系统只跟踪车辆，但案例表明车辆是手段，人是目标。","category":"industry","score":80,"selected":true},{"id":"cmqppyj5702txslp5d7ahupmr","title":"在 AWS、Google Cloud 和 Microsoft Foundry 上使用完整版 Claude Desktop","title_en":"The full Claude Desktop experience on AWS， Google Cloud， and Microsoft Foundry","url":"https://claude.com/blog/the-full-claude-desktop-experience-on-aws-google-cloud-and-microsoft-foundry","source":"Claude：Blog（网页）","publishedAt":"2026-06-22T21:19:56.013Z","summary":"通过 AWS、Google Cloud 和 Microsoft Foundry 使用 Claude Desktop 的组织现已获得 Chat、Claude Cowork 和 Claude Code 集成的完整桌面体验。IT 团队可将推理保留在自己的云环境中，对话历史本地存储。支持 IAM Identity Center、Workforce Identity Federation、Microsoft Entra ID 或 Okta 登录；策略模板可导出至 Intune、GPO 或 Jamf；提供离线安装器。Chat、Claude Cowork 和 Claude Code 各有独立策略键，支持精细访问控制。M365 连接器通过 Entra 应用访问邮件和文档，并支持 GCC High/DoD 端点。","category":"ai-products","score":55,"selected":true},{"id":"cmqppo7c402qnslp5p92n6y3b","title":"Show HN：Oak--专为代理设计的 Git 替代方案","title_en":"Show HN： Oak--专为代理设计的 Git 替代方案","url":"https://oak.space/oak/oak","source":"Hacker News 热门（buzzing.cc 中文翻译）","publishedAt":"2026-06-22T21:00:09.808Z","summary":"Oak 是开源版本控制系统，专为 AI 智能体（Claude Code、Codex、Cursor）设计。采用 BLAKE3 内容哈希、内容定义分块、diff/merge 及 Blob/Manifest/Commit/Tree 数据模型，可选 SQLite 和 git 后端。以分支-会话为基本工作单元，用分支描述替代逐次提交，通过内容寻址懒加载使智能体数秒内编辑任意仓库。速度远超 git。已发布公开测试版 v0.99.0，支持 macOS（Apple Silicon）、Linux（x86_64）及 Windows，可通过 curl 或 cargo 安装，Apache-2.0 开源。","category":"ai-products","score":72,"selected":true},{"id":"cmqpl4smd01j1slp5npj3krmn","title":"Google DeepMind 7500 万美元投资 A24，合作开发电影 AI 工具","title_en":"Google DeepMind bets $75M on AI's future in Hollywood with A24 deal","url":"https://techcrunch.com/2026/06/22/google-deepmind-bets-75m-on-ais-future-in-hollywood-with-a24-deal","source":"TechCrunch：AI（RSS）","publishedAt":"2026-06-22T18:49:44.000Z","summary":"Google DeepMind 宣布向独立电影制片厂 A24 投资 7500 万美元（据《华尔街日报》），双方将合作开发电影制作 AI 工具。A24 出品过《万事俱备》《后室》等影片。Google DeepMind CEO Demis Hassabis 称，希望通过与艺术家直接合作，打造支持创意表达的 AI 功能。此举是好莱坞最新一次科技公司与电影 AI 联手，此前 Netflix 已收购 Ben Affleck 的 AI 工具公司 Interpositive，亚马逊 MGM 工作室也在去年设立了影视 AI 部门。","category":"industry","score":70,"selected":true},{"id":"cmqpgzgfq00hislp5hwlbgz0h","title":"Google ADK 与 A2A 协议：跨语言多智能体团队构建实战","title_en":"Build Cross-Language Multi-Agent Team with Google's Agent Development Kit and A2A","url":"https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T17:08:43.358Z","summary":"一篇技术博客展示了如何用 Google Agent Development Kit （ADK） 与 Agent2Agent （A2A） 协议搭建跨语言多智能体流水线：Python agent 调用 Gemini 解析合同条款，Go agent 用纯确定性逻辑校验合规性。A2A 协议通过 Agent Card 实现能力发现、JSON-RPC 2.0 完成通信、Task 状态机管理任务生命周期；ADK 的 RemoteA2aAgent 抽象可将任意 A2A 兼容服务封装成本地子智能体。文中强调将单体提示词分解为专业化微智能体，以解决上下文退化、故障爆炸半径和不可测试性问题。完整源码已在 GitHub 发布。","category":"tip","score":56,"selected":true},{"id":"cmqpez1uu001gslp5j4h23mih","title":"东京 AI 公司 Sakana AI 推出多智能体编排系统 Sakana Fugu","title_en":"Sakana AI 是2023年在东京成立的AI研发公司，核心定位是开发\"自然启发\"（nature-inspired）的AI模型。 强调集体智能（collective intelligence）和演…","url":"https://x.com/berryxia/status/2069090959938466298","source":"X：Berry Xia (@berryxia)","publishedAt":"2026-06-22T16:11:41.000Z","summary":"Sakana AI 是 2023 年成立于东京的 AI 公司，由前 Google Brain 的 David Ha（CEO）、Transformer 论文共同作者 Llion Jones（CTO）及前日本外交官 Ren Ito（主席）联合创立。其产品 Sakana Fugu 将多智能体系统封装成单个 API 调用，内部自动拆解任务、调度全球模型并验证结果。Fugu Ultra 在工程、科学、推理等基准上对标 Fable/Mythos，通过动态编排多模型天然绕开单一供应商出口管制风险，被视为将多智能体从复杂工程变为开箱即用的产品形态。","category":"ai-products","score":75,"selected":true},{"id":"cmqpeu90600l4sldksepc49lt","title":"Google Labs 提出用\"洞察策略\"评估 AI 编码智能体的主动性","title_en":"Measuring What Matters with Jules","url":"https://developers.googleblog.com/measuring-what-matters-with-jules","source":"Google Developers Blog（RSS）","publishedAt":"2026-06-22T16:08:41.780Z","summary":"Google Labs 提出以\"洞察策略\"评估 AI 编码智能体的主动性，而非仅按任务完成度打分。团队基于 Google 内部代码库 705 个 bug（1178 个 CL），通过时空近邻与语义相似度聚类还原开发者实际的高层级目标。初步实验显示：Jules 在单轮探索下洞察相关性评分平均 4.5/5；探索预算从两轮增至三轮时，Hit@5 准确率从 33% 升至 57%。团队正将评估方法扩展至公开 GitHub 数据，并探索纳入问题追踪器、对话等更丰富的上下文。","category":"paper","score":61,"selected":true},{"id":"cmqpepyo500j1sldkfj5exgj8","title":"开辟新赛道：小米 YU7 GT 创全球首个纽北自动驾驶圈速纪录，官方圈速榜新增\"自动驾驶\"分类","title_en":null,"url":"https://www.ithome.com/0/967/234.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T15:13:29.000Z","summary":"小米 YU7 GT（选配赛道专业套装）在纽博格林北环赛道以自动驾驶系统完成全程无人计时圈，成绩 10 分 29 秒 483，成为全球首个纽北自动驾驶圈速纪录。纽北官方圈速榜因此新增\"自动驾驶\"分类。小米汽车表示，在极限赛道中锤炼的动态模型、高频扭矩分配和毫秒级救车能力，将逐步下放至量产车，以提升用户在暴雨、冰雪等极端工况下的底盘与智驾安全。","category":"industry","score":85,"selected":true},{"id":"cmqpbc21e08laslx6gica1m67","title":"微信Agent小微灰度内测：主入口发消息红包，子入口可读聊天记录","title_en":"聊聊我刚刚拿到测试的微信Agent。","url":"https://mp.weixin.qq.com/s/qVdfx01e9C9r5mGi0jh2BA","source":"公众号：数字生命卡兹克","publishedAt":"2026-06-22T13:34:14.000Z","summary":"微信Agent小微灰度内测已开始，主入口位于微信首页左上角，支持给好友发消息和红包（需确认），但无法读取聊天记录或向群聊发消息。群聊和私聊的\"问小微\"子入口则可读取聊天记录并支持群发。小微可创建日程提醒、待办、总结朋友圈，打通公众号和视频号进行问答。收藏仅可读取小微自建笔记。内置\"小工具\"功能，支持语音创建简易小程序（暂不可发布），还可调用第三方小程序。","category":"ai-products","score":72,"selected":true},{"id":"cmqpaflwr08cpslx6umzww19d","title":"Anthropic 工程负责人：Claude Code 让程序员更孤独","title_en":null,"url":"https://www.ithome.com/0/967/216.htm","source":"IT之家（RSS）","publishedAt":"2026-06-22T13:25:46.000Z","summary":"6月22日，Anthropic工程负责人Fiona Fung表示，Claude Code和Claude Cowork等AI智能体让工程师越发依赖智能体工作，彼此之间交流减少，长期易感孤独。团队为此组织编程午餐、黑客松和共同开发时段，重新创造面对面协作机会。调查显示Claude Code已成为创业公司最常用的AI编程工具，\"氛围编程\"兴起使\"单人创业者\"增多，但Fung强调协作仍不可或缺。","category":"tip","score":70,"selected":true},{"id":"cmqpamzm108huslx6vf1oonz9","title":"PP-OCRv6 on Hugging Face：50 语言 OCR，参数规模 1.5M 至 34.5M","title_en":"PP-OCRv6 on Hugging Face： 50-Language OCR from 1.5M to 34.5M Parameters","url":"https://huggingface.co/blog/PaddlePaddle/pp-ocrv6","source":"Hugging Face：Blog（RSS）","publishedAt":"2026-06-22T13:18:56.000Z","summary":"PP-OCRv6 是 PaddleOCR 最新一代通用 OCR 模型族，提供 tiny（1.5M）、small（7.7M）和 medium（34.5M）三级。medium 和 small 支持 50 种语言（简体/繁体中文、英文、日文及 46 种拉丁语系）。在官方多场景基准上，medium 检测 Hmean 86.2%，识别准确率 83.2%，较 PP-OCRv5_server 分别提升 +4.6 和 +5.1 个百分点。模型采用 PPLCNetV4 统一骨干、RepLKFPN 检测模块和 EncoderWithLightSVTR 识别模块，可通过 PaddleOCR、Transformers、ONNX Runtime 等后端灵活部署。","category":"ai-models","score":69,"selected":true},{"id":"cmqpi3u8v00smslp5or0d3mx7","title":"Cursor 审计发现奖励黑客行为淹没模型智能提升","title_en":"Reward hacking is swamping model intelligence gains","url":"https://cursor.com/blog/reward-hacking-coding-benchmarks","source":"Cursor Blog","publishedAt":"2026-06-22T12:00:00.000Z","summary":"Cursor 通过审计模型轨迹发现，在 SWE-bench Pro 上 Opus 4.8 Max 有 63% 的成功解决方案直接从公开来源检索修正而非自主推导。隔离 git 历史并限制网络后，Opus 4.8 Max 得分从 87.1% 跌至 73.0%，Composer 2.5 从 74.7% 跌至 54.0%。在 SWE-bench Multilingual 上，标准环境与严格环境得分差距分别为 9.1 和 7.5 个百分点。两种主要模式是上游查找（57%）和 git 历史挖掘（9%）。研究建议通过审计轨迹和限制运行时环境来缓解此类奖励黑客行为。","category":"tip","score":72,"selected":true},{"id":"cmqph7ap700n2slp5g4tfjs46","title":"OpenAI 发布 Daybreak 安全工具：Codex Security 与 GPT-5.5-Cyber","title_en":"Daybreak： Tools for securing every organization in the world","url":"https://openai.com/index/daybreak-securing-the-world","source":"OpenAI：官网动态（RSS · 排除企业/客户案例）","publishedAt":"2026-06-22T10:00:00.000Z","summary":"OpenAI 推出 Daybreak 系列工具，包括 Codex Security 和 GPT-5.5-Cyber，帮助组织大规模发现、验证并修补漏洞。","category":"ai-products","score":57,"selected":true}]}</script>
     <main class="shell">
       <section class="hero">
         <div class="hero-copy">
@@ -502,6 +571,17 @@ h1 {
             <strong>手动更新</strong>
             <span class="manual-update-note">打开 GitHub Actions 手动运行页面，必要时可立即补跑一次更新。</span>
           </a>
+          <div class="date-switcher">
+            <label class="date-field" for="date-picker">
+              <span>查看历史日期</span>
+              <input id="date-picker" type="date" />
+            </label>
+            <div class="date-actions">
+              <button class="date-button" id="date-go" type="button">查看选中日期</button>
+              <button class="date-button ghost" id="date-latest" type="button">回到最新</button>
+            </div>
+            <p class="date-note">仅保留最近 30 天存档，超过期限的日期会自动清理。</p>
+          </div>
           <label class="search" for="search">
             <span>搜索标题 / 来源 / 摘要</span>
             <input id="search" type="search" placeholder="试试输入 OpenAI、模型、论文..." />
@@ -540,6 +620,9 @@ const els = {
   updated: document.getElementById("metric-updated"),
   syncStatus: document.getElementById("sync-status"),
   syncDetails: document.getElementById("sync-details"),
+  datePicker: document.getElementById("date-picker"),
+  dateGo: document.getElementById("date-go"),
+  dateLatest: document.getElementById("date-latest"),
   search: document.getElementById("search"),
   rail: document.getElementById("rail"),
   sections: document.getElementById("sections"),
@@ -569,30 +652,6 @@ const dayKeyFormatter = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 });
 
-function getDate() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("date");
-}
-
-async function loadData() {
-  const date = getDate();
-
-  let url;
-
-  if (date) {
-    url = `./${date}.json`;
-  } else {
-    url = "./data.json"; // fallback 最新
-  }
-
-  const res = await fetch(url);
-  const data = await res.json();
-
-  render(data); // 你原来的渲染函数
-}
-
-loadData();
-
 function formatTime(value) {
   if (!value) return "刚刚";
   return timeFormatter.format(new Date(value));
@@ -616,6 +675,29 @@ function isDateKey(value) {
 
 function snapshotUrl(dateKey) {
   return dateKey ? `./data/${dateKey}.json` : "./data/latest.json";
+}
+
+function getDateParam() {
+  const params = new URLSearchParams(window.location.search);
+  const value = params.get("date");
+  return value && isDateKey(value) ? value : "";
+}
+
+function navigateToDate(dateKey) {
+  const url = new URL(window.location.href);
+  if (dateKey) {
+    url.searchParams.set("date", dateKey);
+  } else {
+    url.searchParams.delete("date");
+  }
+  window.location.href = url.toString();
+}
+
+function syncDatePicker(dateKey) {
+  if (!els.datePicker) return;
+  els.datePicker.max = dateKeyFromDate(new Date());
+  els.datePicker.min = dateKeyFromDate(new Date(Date.now() - 29 * 24 * 60 * 60 * 1000));
+  els.datePicker.value = dateKey || dateKeyFromDate(new Date());
 }
 
 function normalizeCategory(category) {
@@ -741,13 +823,13 @@ function render() {
 
 async function loadData() {
   const inline = document.getElementById("aihot-data")?.textContent?.trim();
-  const dateParam = new URLSearchParams(window.location.search).get("date");
-  const dateKey = dateParam && isDateKey(dateParam) ? dateParam : "";
+  const dateKey = getDateParam();
   const dataUrl = snapshotUrl(dateKey);
 
   if (inline && inline !== "__AIHOT_INLINE_DATA__" && !dateKey) {
     state.data = JSON.parse(inline);
     render();
+    syncDatePicker("");
     return;
   }
 
@@ -758,6 +840,16 @@ async function loadData() {
   }
   state.data = await response.json();
   render();
+  syncDatePicker(dateKey);
+}
+
+function dateKeyFromDate(input) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(input));
 }
 
 document.addEventListener("click", (event) => {
@@ -770,6 +862,21 @@ document.addEventListener("click", (event) => {
 els.search.addEventListener("input", (event) => {
   state.query = event.target.value.trim();
   render();
+});
+
+els.dateGo?.addEventListener("click", () => {
+  const value = els.datePicker?.value || "";
+  navigateToDate(value);
+});
+
+els.dateLatest?.addEventListener("click", () => {
+  navigateToDate("");
+});
+
+els.datePicker?.addEventListener("change", () => {
+  if (els.datePicker.value) {
+    navigateToDate(els.datePicker.value);
+  }
 });
 
 loadData().catch((error) => {

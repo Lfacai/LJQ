@@ -19,6 +19,9 @@ const els = {
   updated: document.getElementById("metric-updated"),
   syncStatus: document.getElementById("sync-status"),
   syncDetails: document.getElementById("sync-details"),
+  datePicker: document.getElementById("date-picker"),
+  dateGo: document.getElementById("date-go"),
+  dateLatest: document.getElementById("date-latest"),
   search: document.getElementById("search"),
   rail: document.getElementById("rail"),
   sections: document.getElementById("sections"),
@@ -48,30 +51,6 @@ const dayKeyFormatter = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 });
 
-function getDate() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("date");
-}
-
-async function loadData() {
-  const date = getDate();
-
-  let url;
-
-  if (date) {
-    url = `./${date}.json`;
-  } else {
-    url = "./data.json"; // fallback 最新
-  }
-
-  const res = await fetch(url);
-  const data = await res.json();
-
-  render(data); // 你原来的渲染函数
-}
-
-loadData();
-
 function formatTime(value) {
   if (!value) return "刚刚";
   return timeFormatter.format(new Date(value));
@@ -95,6 +74,29 @@ function isDateKey(value) {
 
 function snapshotUrl(dateKey) {
   return dateKey ? `./data/${dateKey}.json` : "./data/latest.json";
+}
+
+function getDateParam() {
+  const params = new URLSearchParams(window.location.search);
+  const value = params.get("date");
+  return value && isDateKey(value) ? value : "";
+}
+
+function navigateToDate(dateKey) {
+  const url = new URL(window.location.href);
+  if (dateKey) {
+    url.searchParams.set("date", dateKey);
+  } else {
+    url.searchParams.delete("date");
+  }
+  window.location.href = url.toString();
+}
+
+function syncDatePicker(dateKey) {
+  if (!els.datePicker) return;
+  els.datePicker.max = dateKeyFromDate(new Date());
+  els.datePicker.min = dateKeyFromDate(new Date(Date.now() - 29 * 24 * 60 * 60 * 1000));
+  els.datePicker.value = dateKey || dateKeyFromDate(new Date());
 }
 
 function normalizeCategory(category) {
@@ -220,13 +222,13 @@ function render() {
 
 async function loadData() {
   const inline = document.getElementById("aihot-data")?.textContent?.trim();
-  const dateParam = new URLSearchParams(window.location.search).get("date");
-  const dateKey = dateParam && isDateKey(dateParam) ? dateParam : "";
+  const dateKey = getDateParam();
   const dataUrl = snapshotUrl(dateKey);
 
   if (inline && inline !== "__AIHOT_INLINE_DATA__" && !dateKey) {
     state.data = JSON.parse(inline);
     render();
+    syncDatePicker("");
     return;
   }
 
@@ -237,6 +239,16 @@ async function loadData() {
   }
   state.data = await response.json();
   render();
+  syncDatePicker(dateKey);
+}
+
+function dateKeyFromDate(input) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(input));
 }
 
 document.addEventListener("click", (event) => {
@@ -249,6 +261,21 @@ document.addEventListener("click", (event) => {
 els.search.addEventListener("input", (event) => {
   state.query = event.target.value.trim();
   render();
+});
+
+els.dateGo?.addEventListener("click", () => {
+  const value = els.datePicker?.value || "";
+  navigateToDate(value);
+});
+
+els.dateLatest?.addEventListener("click", () => {
+  navigateToDate("");
+});
+
+els.datePicker?.addEventListener("change", () => {
+  if (els.datePicker.value) {
+    navigateToDate(els.datePicker.value);
+  }
 });
 
 loadData().catch((error) => {
